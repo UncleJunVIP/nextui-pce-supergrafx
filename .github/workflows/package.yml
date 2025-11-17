@@ -25,14 +25,6 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: Mortar.pak
-          path: build/Mortar.pak
-          if-no-files-found: error
-          retention-days: 3
-          overwrite: true
-
-      - uses: actions/upload-artifact@v4
-        with:
           name: SUPERGRAFX.pak
           path: build/SUPERGRAFX.pak
           if-no-files-found: error

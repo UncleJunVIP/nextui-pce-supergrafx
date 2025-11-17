@@ -23,15 +23,6 @@ RUN apt-get update && apt-get install -y \
     libjpeg-dev \
     && rm -rf /var/lib/apt/lists/*
 
-RUN wget -q https://github.com/libsdl-org/SDL/releases/download/release-2.30.9/SDL2-2.30.9.tar.gz && \
-    tar -xzf SDL2-2.30.9.tar.gz && \
-    cd SDL2-2.30.9 && \
-    ./configure --prefix=/usr && \
-    make -j$(nproc) && \
-    make install && \
-    cd .. && \
-    rm -rf SDL2-2.30.9 SDL2-2.30.9.tar.gz
-
 RUN useradd -m builder
 
 FROM base AS builder
