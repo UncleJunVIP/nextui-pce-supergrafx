@@ -1,0 +1,40 @@
+name: Package mednafen_supergrafx
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+
+  build:
+    runs-on: ubuntu-22.04-arm
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Task
+        uses: arduino/setup-task@v2
+        with:
+          version: 3.x
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and Package
+        run: task all
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Mortar.pak
+          path: build/Mortar.pak
+          if-no-files-found: error
+          retention-days: 3
+          overwrite: true
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: SUPERGRAFX.pak
+          path: build/SUPERGRAFX.pak
+          if-no-files-found: error
+          retention-days: 3
+          overwrite: true

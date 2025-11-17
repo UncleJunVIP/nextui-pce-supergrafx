@@ -1,0 +1,15 @@
+{
+  "name": "SUPERGRAFX",
+  "version": "v1.0.0",
+  "type": "EMU",
+  "description": "An addon core for minarch for PC Engine SuperGrafx. Uses the beetle-supergrafx core.",
+  "author": "Mednafen Team",
+  "repo_url": "https://github.com/UncleJunVIP/nextui-pce-supergrafx",
+  "release_filename": "SUPERGRAFX.pak.zip",
+  "changelog": {
+    "v1.0.0": "Initial Release."
+  },
+  "platforms": [
+    "tg5040"
+  ]
+}

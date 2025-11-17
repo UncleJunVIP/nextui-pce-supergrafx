@@ -1,0 +1,32 @@
+version: '3'
+
+tasks:
+  all:
+    cmds:
+      - task: clean
+      - task: build-core
+      - task: package
+
+  clean:
+    cmds:
+      - rm -rf build/
+      - docker rmi mednafen_supergrafx-libretro:latest
+
+  build-core:
+    cmds:
+      - docker build -t mednafen_supergrafx-libretro:latest .
+      - docker create --name mednafen_supergrafx-libretro-temp mednafen_supergrafx-libretro:latest
+      - mkdir -p build/out
+      - docker cp mednafen_supergrafx-libretro-temp:/home/builder/out/. build/out 2>/dev/null || true
+      - docker rm mednafen_supergrafx-libretro-temp
+
+  package:
+    desc: Package RetroArch for NextUI (and similar variants)
+    cmds:
+      - rm -rf build/SUPERGRAFX.pak
+      - mkdir -p build/SUPERGRAFX.pak
+      - cp -R build/out/* build/SUPERGRAFX.pak/
+      - cp launch.sh default.cfg build/SUPERGRAFX.pak/
+
+  adb:
+    cmd: adb push build/SUPERGRAFX.pak /mnt/SDCARD/Emus/tg5040
