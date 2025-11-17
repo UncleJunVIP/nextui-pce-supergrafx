@@ -9,8 +9,8 @@ tasks:
 
   clean:
     cmds:
-      - rm -rf build/
-      - docker rmi mednafen_supergrafx-libretro:latest
+      - rm -rf build || true
+      - docker rmi mednafen_supergrafx-libretro:latest || true
 
   build-core:
     cmds:

@@ -21,7 +21,7 @@ jobs:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and Package
-        run: task all
+        run: task build-core package
 
       - uses: actions/upload-artifact@v4
         with:
